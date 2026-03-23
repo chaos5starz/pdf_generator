@@ -3,6 +3,7 @@ import pandas as pd
 
 
 pdf = FPDF(orientation='p' , unit = 'mm' , format = 'A4')
+pdf.set_auto_page_break(auto =False , margin = 0)
 df = pd.read_csv("topics (2).csv")
 
 for index , row in df.iterrows() :
@@ -13,6 +14,11 @@ for index , row in df.iterrows() :
         pdf.set_text_color(100 , 100 , 100)
         pdf.cell(w=0, h=12, txt=row["Topic"], align="L", ln=1)
         pdf.line(10,22,200,22)
+
+        pdf.ln(260)
+        pdf.set_font(family="Times", size=15)
+        pdf.set_text_color(100 , 100 , 100)
+        pdf.cell(w=0, h=12, txt=row["Topic"], align="R", ln=1)
 
 
 pdf.output('test.pdf', 'F')
